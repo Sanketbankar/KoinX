@@ -81,10 +81,11 @@ function Table() {
           <div className="flex justify-between  mt-5">
             <div className="text-start">
               <div className="text-sm text-[#44475B] font-normal p-1">
-                7D Low
+                52W Low
               </div>
               <div className="text-[#44475B] text-lg font-medium p-1">
-              ${bitcoinData.ath}
+              ${bitcoinData.atl}
+              
               </div>
             </div>
             <div className="w-[500px] h-2">
@@ -92,10 +93,11 @@ function Table() {
             </div>
             <div className="text-end">
               <div className="text-sm text-[#44475B] font-normal p-1">
-                7D High
+                52W High
               </div>
               <div className="text-[#44475B] text-lg font-medium p-1">
-              ${bitcoinData.atl}
+              ${bitcoinData.ath}
+              
               </div>
             </div>
           </div>
@@ -133,7 +135,7 @@ function Table() {
                   7d Low / 7d High
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                ${bitcoinData.ath}/${bitcoinData.atl}
+                ${bitcoinData.atl}/${bitcoinData.ath}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
