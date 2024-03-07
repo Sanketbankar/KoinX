@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const PerformanceSection = ({ url }: {url: string}) => {
-  interface bitcoinData {
+  interface CoinData {
     current_price: number;
     low_24h: number;
     high_24h: number;
@@ -15,7 +15,7 @@ const PerformanceSection = ({ url }: {url: string}) => {
     market_cap: number;
 
   }
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState<CoinData[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
