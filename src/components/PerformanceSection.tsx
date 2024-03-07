@@ -1,6 +1,31 @@
 import { IoMdInformationCircle } from "react-icons/io";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
-function PerformanceSection() {
+const PerformanceSection = ({ url }) => {
+  const [response, setResponse] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(url);
+      setResponse(result.data);
+    };
+
+    fetchData();
+  }, [url]);
+
+  return { response };
+};
+
+
+function Table() {
+  const { response } = PerformanceSection({
+    url: `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en`
+  });
+
+  const bitcoinData = response && response.length > 0 ? response[0] : {};
+
+ 
   return (
     <div className="bg-white mt-5 rounded-lg p-6 h-max">
       <div>
@@ -12,7 +37,7 @@ function PerformanceSection() {
                 Today's Low
               </div>
               <div className="text-[#44475B] text-lg font-medium p-1">
-                46,930.22
+              ${bitcoinData.low_24h}
               </div>
             </div>
             <div className="w-[500px] h-2">
@@ -25,7 +50,7 @@ function PerformanceSection() {
                   <polygon points="0,100 50,0 100,100" />
                 </svg>
                 <span className="text-[#44475B] text-sm font-normal">
-                  $47,137.83
+                ${bitcoinData.current_price}
                 </span>
               </div>
             </div>
@@ -34,7 +59,7 @@ function PerformanceSection() {
                 Today's High
               </div>
               <div className="text-[#44475B] text-lg font-medium p-1">
-                49,343.83
+              ${bitcoinData.high_24h}
               </div>
             </div>
           </div>
@@ -77,7 +102,7 @@ function PerformanceSection() {
                   Bitcoin Price
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  $16,815.46
+                ${bitcoinData.current_price}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
@@ -85,7 +110,7 @@ function PerformanceSection() {
                   24h Low / 24h High{" "}
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  $16,382.07 / $16,874.12
+                ${bitcoinData.low_24h}/${bitcoinData.high_24h}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
@@ -93,7 +118,7 @@ function PerformanceSection() {
                   7d Low / 7d High
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  $16,382.07 / $16,874.12
+                ${bitcoinData.ath}/${bitcoinData.atl}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
@@ -101,7 +126,7 @@ function PerformanceSection() {
                   Trading Volume
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  $23,249,202,782
+                  ${bitcoinData.total_volume}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
@@ -109,7 +134,7 @@ function PerformanceSection() {
                   Market Cap Rank
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  #1
+                  #{bitcoinData.market_cap_rank}
                 </div>
               </div>
             </div>
@@ -119,7 +144,7 @@ function PerformanceSection() {
                   Market Cap
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  $323,507,290,047
+                ${bitcoinData.market_cap}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
@@ -127,7 +152,7 @@ function PerformanceSection() {
                   Market Cap Dominance
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  38.343%
+                  {bitcoinData.market_cap_change_percentage_24h}%
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
@@ -135,7 +160,7 @@ function PerformanceSection() {
                   Volume / Market Cap
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  0.0718
+                {bitcoinData.total_volume / bitcoinData.market_cap}
                 </div>
               </div>
               <div className="flex justify-between py-3 border-b-2 border-[#D3E0E6] items-center">
@@ -144,7 +169,7 @@ function PerformanceSection() {
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4 -p-2">
                   <div className="text-end">
-                    $69,044.77 <span className="text-red-500">-75.6%</span>
+                    ${bitcoinData.ath} <span className="text-red-500">-75.6%</span>
                   </div>
                   <div className="text-xs font-normal">
                     Nov 10, 2021 (about 1 year)
@@ -157,7 +182,7 @@ function PerformanceSection() {
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4 -p-2">
                   <div className="text-end">
-                    $67.81 <span className="text-green-500">24729.1%</span>
+                    ${bitcoinData.atl} <span className="text-green-500">24729.1%</span>
                   </div>
                   <div className="text-xs font-normal">
                     Jul 06, 2013 (over 9 years)
@@ -172,4 +197,4 @@ function PerformanceSection() {
   );
 }
 
-export default PerformanceSection;
+export default Table;
