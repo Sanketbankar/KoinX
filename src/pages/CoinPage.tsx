@@ -1,13 +1,8 @@
-import About from "../components/About"
 import CradsPromo from "../components/CradsPromo"
 import Crypto from "../components/Crypto"
 import PageHolder from "../components/PageHolder"
-import Table from "../components/PerformanceSection"
-import SentimentSection from "../components/SentimentSection"
 import ToggleSection from "../components/ToggleSection"
-import Tokenomics from "../components/Tokenomics"
 import TrendingCoins from "../components/TrendingCoins"
-import Team from "../components/TeamCard"
 import SuggestionSection from "../components/SuggestionSection"
 
 
@@ -20,11 +15,6 @@ function CoinPage() {
         <div className="lg:w-8/12 lg:ml-14 mx-4">
             <Crypto/>
              <ToggleSection/>
-             <Table/>
-             <SentimentSection/>
-             <About/>
-             <Tokenomics/>
-             <Team/>
         </div>
         <div className="lg:w-4/12 lg:mr-14 mx-2">
           <CradsPromo/>
