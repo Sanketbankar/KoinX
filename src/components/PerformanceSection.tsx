@@ -2,7 +2,19 @@ import { IoMdInformationCircle } from "react-icons/io";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const PerformanceSection = ({ url }) => {
+const PerformanceSection = ({ url }: {url: string}) => {
+  interface CoinData {
+    current_price: number;
+    low_24h: number;
+    high_24h: number;
+    ath: number;
+    atl: number;
+    total_volume: number;
+    market_cap_rank: number;
+    market_cap_change_percentage_24h: number;
+    market_cap: number;
+
+  }
   const [response, setResponse] = useState(null);
 
   useEffect(() => {
