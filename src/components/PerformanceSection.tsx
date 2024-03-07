@@ -13,9 +13,12 @@ const PerformanceSection = ({ url }: {url: string}) => {
     market_cap_rank: number;
     market_cap_change_percentage_24h: number;
     market_cap: number;
-
+    length: number;
+    response: number;
+    0: any;
   }
-  const [response, setResponse] = useState<bitcoinData[]>([]);
+  // done 
+  const [response, setResponse] = useState<bitcoinData | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
